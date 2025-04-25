@@ -1,0 +1,31 @@
+! Grundlegende Konfiguration für Cisco Catalyst 2960-CX
+!
+! Hostname des Switches
+hostname ZTP_Test1
+! Deaktivieren des DNS-Lookups
+no ip domain-lookup
+
+! Konfiguration der Management-VLAN
+interface vlan 1
+ ip address dhcp
+ no shutdown
+
+! Konfiguration der Konsolen- und VTY-Zugänge
+line con 0
+ password cisco
+ login
+line vty 0 4
+ password cisco
+ login
+
+! Aktivieren von SSH
+ip domain-name example.com
+crypto key generate rsa
+ip ssh version 2
+
+! Aktivieren von SNMP
+snmp-server community public RO
+
+! Speichern der Konfiguration
+end
+write memory
